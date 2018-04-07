@@ -4,7 +4,7 @@ import java.io.FileNotFoundException;
 
 public class Main {
     public static void main(String[] args) {
-        if (args.length != 1) {
+        /*if (args.length != 1) {
             System.out.println("usage: wc.exe [filename]");
             System.exit(0);
         }
@@ -20,8 +20,8 @@ public class Main {
         } catch (FileNotFoundException e) {
             System.out.println("File not found");
             System.exit(0);
-        }
-        Counter counter = new Counter(bis);
+        }*/
+        Counter counter = new Counter(System.in);
         counter.processCount();
 
         Output output = new Output(counter.getMap(), counter.getQueue());
