@@ -37,6 +37,9 @@ public class Counter {
                     queue.add(s);
                 } else {
                     if (map.getOrDefault(s, 0) >= map.get(queue.peek())) {
+                        if (queue.contains(s)) {
+                            queue.remove(s);
+                        }
                         queue.add(s);
                     }
 
