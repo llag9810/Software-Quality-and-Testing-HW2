@@ -1,0 +1,39 @@
+One may wish to open an account and simultaneously deposit some initial amount. Although the initial implementation did not address this requirement, it can be achieved by using an initializer.
+
+ class account_with_deposit x =
+    object
+      inherit account_with_history
+      initializer balance <- x
+    end;;
+
+class account_with_deposit :
+  Euro.c ->
+  object
+    val mutable balance : Euro.c
+    val mutable history : Euro.c operation list
+    method balance : Euro.c
+    method deposit : Euro.c -> unit
+    method history : Euro.c operation list
+    method private trace : Euro.c operation -> unit
+    method withdraw : Euro.c -> Euro.c
+  end
+
+A better alternative is:
+
+ class account_with_deposit x =
+    object (self)
+      inherit account_with_history
+      initializer self#deposit x
+    end;;
+
+class account_with_deposit :
+  Euro.c ->
+  object
+    val mutable balance : Euro.c
+    val mutable history : Euro.c operation list
+    method balance : Euro.c
+    method deposit : Euro.c -> unit
+    method history : Euro.c operation list
+    method private trace : Euro.c operation -> unit
+    method withdraw : Euro.c -> Euro.c
+  end

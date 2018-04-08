@@ -1,0 +1,1 @@
+Imagine you are implementing a web application where the user can invite many people by introducing their email addresses. The UX/UI designer makes this decision: there is an empty state where we show a label with some help text, in any other case we show the email addresses with a button/link to delete them to the right.
