@@ -1,4 +1,5 @@
-/*
+package unittest;
+
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
@@ -21,7 +22,7 @@ public class MainTest {
         Main.main(args);
     }
 
-    @Test
+    @Test(expected = NullPointerException.class)
     public void mainTest3() {
         ByteArrayOutputStream os = new ByteArrayOutputStream();
         System.setErr(new PrintStream(os));
@@ -30,5 +31,10 @@ public class MainTest {
         assertThat(os.toString(), is("File not found"));
         System.setErr(System.err);
     }
+
+    @Test
+    public void mainTest4() {
+        String[] args = {"testcase/testm10.txt"};
+        Main.main(args);
+    }
 }
-*/
