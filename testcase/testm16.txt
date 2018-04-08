@@ -1,0 +1,29 @@
+Learning reusable feature representations from large unlabeled datasets has been an area of active
+research.
+
+
+
+In the context of computer vision, one can leverage the practically unlimited amount of
+unlabeled images and videos to learn good intermediate representations, which can then be used on
+a variety of supervised learning tasks such as image classification.
+
+
+
+We propose that one way to build good image representations is by training Generative Adversarial Networks (GANs) (Goodfellow
+et al., 2014), and later reusing parts of the generator and discriminator networks as feature extractors
+for supervised tasks. GANs provide an attractive alternative to maximum likelihood techniques.
+
+
+
+
+
+One can additionally argue that their learning process and the lack of a heuristic cost function (such
+as pixel-wise independent mean-square error) are attractive to representation learning. GANs have
+been known to be unstable to train, often resulting in generators that produce nonsensical outputs.
+
+
+
+
+
+There has been very limited published research in trying to understand and visualize what GANs
+learn, and the intermediate representations of multi-layer GANs.

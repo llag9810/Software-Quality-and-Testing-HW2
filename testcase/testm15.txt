@@ -1,0 +1,45 @@
+Many recent empirical breakthroughs in supervised machine learning have been achieved through
+large and deep neural networks. Network depth (the number of successive computational layers) has
+played perhaps the most important role in these successes. For instance, within just a few years, the
+top-5 image classification accuracy on the 1000-class ImageNet dataset has increased from ∼84%
+[1] to ∼95% [2, 3] using deeper networks with rather small receptive fields [4, 5]. Other results on
+practical machine learning problems have also underscored the superiority of deeper networks [6]
+in terms of accuracy and/or performance.
+In fact, deep networks can represent certain function classes far more efficiently than shallow ones.
+This is perhaps most obvious for recurrent nets, the deepest of them all. For example, the n bit
+parity problem can in principle be learned by a large feedforward net with n binary input units, 1
+output unit, and a single but large hidden layer. But the natural solution for arbitrary n is a recurrent
+net with only 3 units and 5 weights, reading the input bit string one bit at a time, making a single
+recurrent hidden unit flip its state whenever a new 1 is observed [7]. Related observations hold for
+Boolean circuits [8, 9] and modern neural networks [10, 11, 12].
+To deal with the difficulties of training deep networks, some researchers have focused on developing
+better optimizers (e.g. [13, 14, 15]). Well-designed initialization strategies, in particular the normalized
+variance-preserving initialization for certain activation functions [16, 17], have been widely
+adopted for training moderately deep networks. Other similarly motivated strategies have shown
+promising results in preliminary experiments [18, 19]. Experiments showed that certain activation
+functions based on local competition [20, 21] may help to train deeper networks. Skip connections
+between layers or to output layers (where error is “injected”) have long been used in neural
+networks, more recently with the explicit aim to improve the flow of information [22, 23, 2, 24].
+A related recent technique is based on using soft targets from a shallow teacher network to aid in
+training deeper student networks in multiple stages [25], similar to the neural history compressor
+for sequences, where a slowly ticking teacher recurrent net is “distilled” into a quickly ticking student
+recurrent net by forcing the latter to predict the hidden units of the former [26]. Finally, deep
+networks can be trained layer-wise to help in credit assignment [26, 27], but this approach is less
+attractive compared to direct training.
+Very deep network training still faces problems, albeit perhaps less fundamental ones than the problem
+of vanishing gradients in standard recurrent networks [28]. The stacking of several non-linear
+transformations in conventional feed-forward network architectures typically results in poor propagation
+of activations and gradients. Hence it remains hard to investigate the benefits of very deep
+networks for a variety of problems.
+To overcome this, we take inspiration from Long Short Term Memory (LSTM) recurrent networks
+[29, 30]. We propose to modify the architecture of very deep feedforward networks such that information
+flow across layers becomes much easier. This is accomplished through an LSTM-inspired
+adaptive gating mechanism that allows for computation paths along which information can flow
+across many layers without attenuation. We call such paths information highways. They yield highway
+networks, as opposed to traditional ‘plain’ networks.1
+Our primary contribution is to show that extremely deep highway networks can be trained directly
+using stochastic gradient descent (SGD), in contrast to plain networks which become hard to optimize
+as depth increases (Section 3.1). Deep networks with limited computational budget (for which
+a two-stage training procedure mentioned above was recently proposed [25]) can also be directly
+trained in a single stage when converted to highway networks. Their ease of training is supported
+by experimental results demonstrating that highway networks also generalize well to unseen data.
