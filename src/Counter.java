@@ -34,7 +34,10 @@ public class Counter {
             Matcher matcher = pattern.matcher(line);
 
             while (matcher.find()) {
-                String s = matcher.group();
+                String s = matcher.group().toLowerCase();
+                if (s.endsWith("-")) {
+                    s = s.substring(0, s.length()  - 1);
+                }
                 int count = map.getOrDefault(s, 0) + 1;
                 map.put(s, count);
                 if (queue.isEmpty()) {
