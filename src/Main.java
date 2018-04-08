@@ -1,9 +1,8 @@
-import java.io.BufferedInputStream;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
+import java.io.*;
 
 public class Main {
     public static void main(String[] args) {
+        long startTime = System.nanoTime();
         if (args.length != 1) {
             throw new RuntimeException("program should take exactly 1 argument.");
         }
@@ -26,6 +25,12 @@ public class Main {
         counter.processCount();
 
         Output output = new Output(counter.getMap(), counter.getQueue());
-        output.outputInfo(System.out);
+        try {
+            output.outputInfo(new PrintStream(new FileOutputStream(new File("result.txt"))));
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+        long end = System.nanoTime();
+        System.out.println((end - startTime) / 1e9);
     }
 }
