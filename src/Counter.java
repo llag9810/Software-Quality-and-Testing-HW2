@@ -16,7 +16,11 @@ public class Counter {
             public int compare(String o1, String o2) {
                 int c1 = map.getOrDefault(o1, 0);
                 int c2 = map.getOrDefault(o2, 0);
-                return c1 - c2;
+                if (c1 - c2 != 0) {
+                    return c1 - c2;
+                }
+
+                return o1.compareTo(o2);
             }
         });
         this.is = is;

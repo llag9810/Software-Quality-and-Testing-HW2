@@ -13,9 +13,14 @@ public class Output {
     }
 
     public void outputInfo(PrintStream ps) {
-        while (!queue.isEmpty()) {
-            String s = queue.poll();
-            ps.println(s + " " + map.get(s));
+        String[] s = new String[queue.size()];
+        int size = queue.size();
+        for (int i = 0; i < size; i++) {
+            s[i] = queue.poll();
+        }
+
+        for (int i = s.length - 1; i >= 0; i--) {
+            ps.println(s[i] + " " + map.get(s[i]));
         }
     }
 }
